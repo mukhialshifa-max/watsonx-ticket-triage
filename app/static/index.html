@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ticket Triage</title>
+  <style>
+    :root { --bg:#f4f6f9; --card:#fff; --text:#161616; --muted:#5a6270; --accent:#0f62fe; --border:#dde1e6;
+            --p1:#da1e28; --p2:#ff832b; --p3:#f1c21b; --p4:#24a148; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"IBM Plex Sans", system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header { background:#161616; color:#fff; padding:16px 20px; }
+    header h1 { margin:0; font-size:18px; font-weight:600; }
+    header p { margin:4px 0 0; font-size:13px; color:#c6c6c6; }
+    main { max-width:1100px; margin:0 auto; padding:20px 16px; }
+    textarea { width:100%; min-height:140px; padding:12px; border:1px solid var(--border); border-radius:6px; font:inherit; font-size:14px; }
+    .row { display:flex; gap:8px; margin:10px 0 20px; flex-wrap:wrap; }
+    button { border:0; border-radius:6px; padding:10px 18px; font-size:14px; cursor:pointer; }
+    .primary { background:var(--accent); color:#fff; }
+    .secondary { background:var(--card); border:1px solid var(--border); }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:16px; }
+    .stat { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:12px; }
+    .stat b { display:block; font-size:24px; }
+    .stat span { font-size:12px; color:var(--muted); }
+    .table-wrap { overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:8px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { text-align:left; padding:10px; border-bottom:1px solid var(--border); vertical-align:top; }
+    th { background:#f2f4f8; font-weight:600; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:10px; color:#fff; font-weight:600; font-size:12px; }
+    .P1 { background:var(--p1); } .P2 { background:var(--p2); } .P3 { background:var(--p3); color:#161616; } .P4 { background:var(--p4); }
+    .review { color:var(--p1); font-weight:600; }
+    .muted { color:var(--muted); }
+    footer { font-size:12px; color:var(--muted); text-align:center; padding:16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EHR Support Ticket Triage</h1>
+    <p>Paste tickets, one per line. Each is classified, prioritized and routed to a team.</p>
+  </header>
+  <main>
+    <textarea id="input" placeholder="One ticket per line..."></textarea>
+    <div class="row">
+      <button class="primary" id="run">Triage tickets</button>
+      <button class="secondary" id="sample">Load sample tickets</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="table-wrap" id="results"></div>
+  </main>
+  <footer id="engine">Sample data only. Do not paste real patient information.</footer>
+  <script>
+    const SAMPLE = [
+      "The EHR is down for the whole emergency department",
+      "I forgot my password and I am locked out, patients are waiting",
+      "How do I add a new appointment type to my clinic schedule",
+      "Labels are not printing on the specimen printer in lab",
+      "Lab results were filed to the wrong patient",
+      "Wi-Fi keeps dropping on 5 North",
+      "Please add access to the surgery module for a new resident"
+    ].join("\n");
+
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+    function sla(h) { return h < 1 ? Math.round(h * 60) + " min" : h + " h"; }
+
+    function render(data) {
+      const p = data.by_priority;
+      document.getElementById("stats").innerHTML = [
+        ["Total tickets", data.total],
+        ["P1 urgent", p.P1 || 0], ["P2 high", p.P2 || 0], ["P3 normal", p.P3 || 0], ["P4 request", p.P4 || 0],
+        ["Need review", data.needs_review]
+      ].map(([l, v]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+
+      const rows = data.tickets.map(t => `
+        <tr>
+          <td><span class="pill ${t.priority}">${t.priority}</span></td>
+          <td>${esc(t.text)}<div class="muted">${esc(t.reason)}</div></td>
+          <td>${esc(t.category)}${t.confidence !== null ? `<div class="muted">${Math.round(t.confidence * 100)}% confident</div>` : ""}</td>
+          <td>${esc(t.team)}</td>
+          <td>${sla(t.sla_hours)}</td>
+          <td>${t.needs_review ? '<span class="review">Yes</span>' : "No"}</td>
+        </tr>`).join("");
+      document.getElementById("results").innerHTML = `
+        <table>
+          <thead><tr><th>Priority</th><th>Ticket</th><th>Category</th><th>Route to</th><th>First response</th><th>Human review</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    async function run() {
+      const tickets = document.getElementById("input").value.split("\n").map(s => s.trim()).filter(s => s.length >= 5);
+      if (!tickets.length) return;
+      const res = await fetch("/triage/batch", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tickets })
+      });
+      if (res.ok) render(await res.json());
+      else document.getElementById("results").textContent = "Something went wrong. Please check your tickets and try again.";
+    }
+
+    document.getElementById("run").addEventListener("click", run);
+    document.getElementById("sample").addEventListener("click", () => {
+      document.getElementById("input").value = SAMPLE; run();
+    });
+    if (new URLSearchParams(location.search).has("demo")) {
+      document.getElementById("input").value = SAMPLE; run();
+    }
+    fetch("/health").then(r => r.json()).then(h => {
+      document.getElementById("engine").textContent = "Engine: " +
+        (h.engine === "watsonx" ? "IBM watsonx.ai" : "local model (Naive Bayes + priority rules)") +
+        " · Sample data only. Do not paste real patient information.";
+    }).catch(() => {});
+  </script>
+</body>
+</html>

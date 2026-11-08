@@ -1,0 +1,106 @@
+id,text,category,priority
+T001,I forgot my password and the account is locked after three tries,Access & Login,P2
+T002,New nurse started today and cannot see any patients on the unit list,Access & Login,P2
+T003,Badge tap is not working on workstation ED-14 I have to type my password every time,Access & Login,P3
+T004,Please add the scheduling role to my account I moved to the outpatient clinic,Access & Login,P4
+T005,My account was disabled while I was on leave and now I cannot log in,Access & Login,P2
+T006,Single sign on keeps asking for my password again after every screen,Access & Login,P3
+T007,The whole emergency department cannot log in to the EHR since 7am,Access & Login,P1
+T008,Request access to the surgical module for the new resident,Access & Login,P4
+T009,Locked out of my account and I have patients waiting in clinic,Access & Login,P2
+T010,Two factor code is not arriving on my phone when I log in from home,Access & Login,P3
+T011,How do I reschedule a follow up appointment for next month,Scheduling,P4
+T012,Provider calendar shows double booked slots for Monday clinic,Scheduling,P3
+T013,Cannot book any appointments the scheduling screen gives an error for all clerks,Scheduling,P1
+T014,Appointment reminder letters printed with the wrong clinic address,Scheduling,P3
+T015,The appointment book is missing Dr Smith's template for December,Scheduling,P3
+T016,How do I cancel a series of recurring appointments,Scheduling,P4
+T017,Scheduled patients are not showing on the clinic arrival list this morning,Scheduling,P2
+T018,I need to block a provider schedule for vacation how do I do it,Scheduling,P4
+T019,Error when checking in a patient for their appointment at the front desk,Scheduling,P2
+T020,The waitlist report is not updating since yesterday,Scheduling,P3
+T021,I registered the same patient twice by mistake there is a duplicate record,Registration,P2
+T022,Cannot update the patient's address the save button is greyed out,Registration,P3
+T023,Health card number field rejects a valid out of province card,Registration,P3
+T024,How do I register a newborn baby in the system,Registration,P4
+T025,Patient wristband printed with the wrong date of birth,Registration,P1
+T026,Two different patients were merged into one record by mistake,Registration,P1
+T027,Insurance information will not save during admission,Registration,P3
+T028,Where do I enter the patient's preferred language,Registration,P4
+T029,Registration screen freezes when I search a patient by name,Registration,P2
+T030,The emergency contact phone number is not saving,Registration,P3
+T031,I documented a note on the wrong patient,Clinical Documentation,P1
+T032,My progress note disappeared after the system froze,Clinical Documentation,P2
+T033,How do I add a template for my discharge summary,Clinical Documentation,P4
+T034,Cannot sign my notes the sign button gives an error,Clinical Documentation,P2
+T035,Medication administration record shows the wrong dose for my patient,Clinical Documentation,P1
+T036,Allergies entered yesterday are not showing on the patient chart,Clinical Documentation,P1
+T037,Vital signs flowsheet is slow to load on our unit,Clinical Documentation,P3
+T038,How do I mark a document as in error,Clinical Documentation,P4
+T039,Spell check is not working in the note editor,Clinical Documentation,P3
+T040,Nursing assessment form is missing the pain score section,Clinical Documentation,P3
+T041,Lab results are not appearing in my inbox for my clinic patients,Results & Inbox,P2
+T042,How do I forward a result to another provider,Results & Inbox,P4
+T043,I am receiving inbox messages for a provider who left the clinic,Results & Inbox,P3
+T044,Critical lab result was not flagged in the inbox,Results & Inbox,P1
+T045,Imaging reports show as pending even though they were finalized,Results & Inbox,P2
+T046,How do I set up a proxy for my inbox while I am on vacation,Results & Inbox,P4
+T047,Inbox count shows 500 items but the list is empty,Results & Inbox,P3
+T048,Cannot open attachments in message center,Results & Inbox,P3
+T049,Results from the outside lab are attached to the wrong patient,Results & Inbox,P1
+T050,Message center is very slow when I open my results folder,Results & Inbox,P3
+T051,Labels are not printing on the specimen printer in lab,Printing & Devices,P2
+T052,Wristband printer on 4 West is jammed,Printing & Devices,P3
+T053,The unit iPad app crashes when I open a patient chart,Printing & Devices,P3
+T054,Barcode scanner is not reading medication barcodes at the bedside,Printing & Devices,P2
+T055,How do I change my default printer,Printing & Devices,P4
+T056,All printers on the third floor stopped printing,Printing & Devices,P2
+T057,The mobile phone app will not update to the new version,Printing & Devices,P3
+T058,Workstation on wheels battery dies after one hour,Printing & Devices,P3
+T059,Document scanner in registration is not sending scans to the chart,Printing & Devices,P3
+T060,Need a new label printer set up for the new clinic room,Printing & Devices,P4
+T061,The EHR is down for the whole hospital,Network & Connectivity,P1
+T062,Wi-Fi keeps disconnecting on the medical unit,Network & Connectivity,P2
+T063,The system is extremely slow for everyone in the clinic,Network & Connectivity,P2
+T064,VPN will not connect from home so I cannot finish my charting,Network & Connectivity,P3
+T065,Citrix session freezes every few minutes,Network & Connectivity,P2
+T066,The network is down in the operating rooms,Network & Connectivity,P1
+T067,Remote desktop gives a connection error,Network & Connectivity,P3
+T068,How do I connect to the guest Wi-Fi for a vendor,Network & Connectivity,P4
+T069,Downtime viewer is not loading during the outage,Network & Connectivity,P1
+T070,Internet is slow in the admin office,Network & Connectivity,P3
+T071,Password reset link says my username does not exist,Access & Login,P2
+T072,I keep getting access denied when I open the pharmacy module,Access & Login,P3
+T073,Login page says my session expired every few minutes,Access & Login,P3
+T074,Please remove access for an employee who left last week,Access & Login,P4
+T075,My username is not recognized at sign in on the new laptop,Access & Login,P2
+T076,Clinic slots for Friday disappeared from the appointment book,Scheduling,P2
+T077,How do I move an appointment to a different provider,Scheduling,P4
+T078,Appointment confirmation text messages are not being sent to patients,Scheduling,P3
+T079,The schedule shows the wrong appointment length for new patient visits,Scheduling,P3
+T080,Cannot find the open slot search in the scheduling tool,Scheduling,P4
+T081,Patient demographics show the wrong gender after registration,Registration,P3
+T082,Medical record number was not created when I admitted the patient,Registration,P2
+T083,How do I correct a patient's last name spelling at registration,Registration,P4
+T084,Admission encounter was created under the wrong patient record,Registration,P1
+T085,Family doctor field will not accept the physician name during registration,Registration,P3
+T086,Discharge summary note template is missing the diagnosis section,Clinical Documentation,P3
+T087,Cannot document vital signs on the flowsheet the cells are locked,Clinical Documentation,P2
+T088,Orders I placed are not showing on the patient chart,Clinical Documentation,P1
+T089,How do I copy forward my previous progress note,Clinical Documentation,P4
+T090,Charting form closes without saving my nursing documentation,Clinical Documentation,P2
+T091,Pathology results are missing from the result viewer,Results & Inbox,P2
+T092,Inbox will not let me acknowledge results,Results & Inbox,P3
+T093,Cannot reply to messages in message center,Results & Inbox,P3
+T094,How do I sort my inbox results by date,Results & Inbox,P4
+T095,Radiology result notifications are going to the wrong provider inbox,Results & Inbox,P2
+T096,The label printer prints blank labels,Printing & Devices,P3
+T097,Bedside scanner beeps but does not scan patient wristbands,Printing & Devices,P2
+T098,Tablet screen is cracked and the device will not turn on,Printing & Devices,P3
+T099,Printer prints the requisition on the wrong tray paper,Printing & Devices,P3
+T100,How do I pair the handheld device with the docking station,Printing & Devices,P4
+T101,The network cable in clinic room 3 is not working,Network & Connectivity,P3
+T102,Server outage is stopping the EHR across the whole hospital,Network & Connectivity,P1
+T103,Wireless connection drops when I walk between units,Network & Connectivity,P3
+T104,VPN connection times out every hour,Network & Connectivity,P3
+T105,How do I request network access for a new workstation,Network & Connectivity,P4
